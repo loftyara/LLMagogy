@@ -1,12 +1,13 @@
 # LLMagogy or fast multi-stage pre-training of Large Language Models with pre-selected limited datasets
-“knowing a few principles frees you from knowing many facts” R. Descartes
-“the knowledge of certain principles easily compensates the lack of knowledge of certain facts” C. Helvétius
+*“knowing a few principles frees you from knowing many facts” R. Descartes*\
+*“the knowledge of certain principles easily compensates the lack of knowledge of certain facts” C. Helvétius*
 
 ## Abstract
 This article proposes a novel multi-stage pre-training approach for large language models (LLMs), inspired by human learning processes. Traditional LLM pre-training involves training massive models on trillions of tokens, requiring significant computational resources and time. In contrast, the proposed method mimics human education by gradually "maturing" the model through stages, starting with small, curated datasets (e.g., textbooks) and progressively increasing model complexity and data volume. Key innovations include:
-•	dividing training into stages corresponding to human developmental phases,
-•	simulating model "growth" by incrementally increasing network depth (D) and width (W)
-•	preserving previously learned knowledge using a freezing coefficient (F) to stabilize earlier parameters. 
+-	dividing training into stages corresponding to human developmental phases,
+-	simulating model "growth" by incrementally increasing network depth (D) and width (W)
+-	preserving previously learned knowledge using a freezing coefficient (F) to stabilize earlier parameters.
+
 This approach aims to create models that understand, rather than memorize, information, while reducing resource consumption. The method remains theoretical and requires experimental validation, but it offers a promising alternative to conventional LLM training, with potential benefits in efficiency, control, and model interpretability.
 
 ## 1.	LLM pre-training now
@@ -19,7 +20,7 @@ What conditions must be met in order to train LLM using the method that people t
 2.	Divide the training materials into parts. Each part will correspond to its own stage of neural network training. Let's not confuse this period with the epoch. The stage refers to the corpus of texts used, and the epoch is the iteration of neural network training with the current corpus of texts
 3.	Figure out how to simulate neural network maturation in a transformer-based LLM, because without it, a large LLM will simply memorize a small set of educational materials
 4.	Think of a way to save what you have learned previously so that new knowledge is based on the old
-### 2.1.	2.1. Preparation of educational materials
+### 2.1.	Preparation of educational materials
 Perhaps future research will reveal that for LLM based on transformers, educational materials need to be prepared differently than for people. Perhaps they need more texts. But now we are simulating human learning, so as educational materials we will take everything that people/children learn on. All books, textbooks, problem books from the age when a child begins to understand speech and his parents read books to them until finishing comprehensive school. Completion of comprehensive school is not necessarily the limit, it’s just that further our education is divided into many specializations and collecting educational materials will require significant effort. This will simply be excessive for testing the hypothesis of the possibility of learning LLM according to the ideas of this article.
 ### 2.2.	Division of educational materials into stages
 Perhaps future research will reveal that for LLM based on transformers, the training materials need to be broken down into parts differently than for humans. They are not tied to the period of human maturation and our annual cycles. Perhaps the training materials will not need to be broken down into stages at all and it will be possible to train the neural network in one stage. But now we are simulating human learning, so all the training material will be broken down by years. We should have about 15 stages - from infancy to adulthood.
