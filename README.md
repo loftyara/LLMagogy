@@ -36,12 +36,12 @@ How to make an infantile LLM? We need to choose parameters D and W so small that
 Now we do a regular pre-training of a small LLM on a very small corpus of texts. This will not take long. The next step is to grow the LLM by one stage so that we can repeat its training on the next set of texts. We do this by increasing the parameters D and W to D1 and W1. The strategy for growing the parameters D and W should be determined experimentally - we can change only one of the parameters at each stage, or we can change both parameters simultaneously. The order and magnitude of the parameter changes are a matter of testing and experimentation. As a result, we will get an LLM of a slightly larger size and with a larger number of parameters. We learned some of these parameters at the previous stage, and the other part is new. We can initiate new parameters randomly or with zeros. But the author believes that the most correct way is to set their initial values so that the result of the increased LLM does not differ from the result of the LLM of the previous stage on the texts of the previous stage. In this way, we preserve the continuity of LLM generations.
 ### 2.4.	Retention of knowledge gained in previous stages of LLM training
 Knowledge is a set of internal LLM parameters. To “save” them between LLM generations, they need to be “frozen” a little. To do this, we introduce another freezing coefficient – F. This coefficient can take a value from 0 to 1. This coefficient is tied to the stage/generation of the trained LLM. When moving from generation 0 to generation 1, we get the coefficient F0, when moving to generation 2 – F1, and so on. It is not necessary to tie the coefficient to generations, but to have one for all training stages. This coefficient is used together with the learning rate coefficient α as another multiplier. Combined α1 = α*F0, α2 = α*F0*F1, and so on. Using the F parameter, we slow down the changes in the neural network parameters calculated at the previous stage, forcing the neural network of the current generation to use mainly the newly added parameters. Choosing the coefficient F=0 generally cancels the change in the parameters of the previous stages. The value of the coefficient F=1 disables this mechanism. Table 1 shows an example of the rate of change of parameters of different generations of LLM at F=1/2
-
-Stage	α0	α1	α2	α3
-0	-	-	-	-
-1	½	-	-	-
-2	¼	½	-	-
-3	1/8	¼	½	-
+| Stage | α0 | α1 | α2 | α3 |
+| ----- | -- | -- | -- | -- |
+| 0 | - | - | - | - |
+| 1 | ½ | - | - | - |
+| 2 | ¼ | ½ | - | - |
+| 3 | 1/8 | ¼ | ½ | - |
 
 That is, as the training stage increases, the rate of change of parameters from older LLM generations decreases all the time. And the further away the generation in which these parameters were added, the slower they will change.
 ### 2.5.	Completing pre-training
